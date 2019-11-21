@@ -50,30 +50,32 @@
   };
 </script>
 
-  <meta name="description" content="物有本末 事有始终 知所先后 则近道矣 jtz6156564044@outlook.com https:&#x2F;&#x2F;github.com&#x2F;Jasemin https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41692018">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小树林急急而奔的Blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+  <meta name="description" content="逆向，顾名思义就是将别人打包出来的软件包逆转回去，在这里我们将带领大家操作如何将砸壳的ipa包进行逆向，至于如何取到ipa包和如何砸壳就不在这里说明了，以后会单独写出文档来。">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS的ipa包重签名">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;21&#x2F;%E9%87%8D%E7%AD%BE%E5%90%8D&#x2F;index.html">
 <meta property="og:site_name" content="小树林急急而奔的Blog">
-<meta property="og:description" content="物有本末 事有始终 知所先后 则近道矣 jtz6156564044@outlook.com https:&#x2F;&#x2F;github.com&#x2F;Jasemin https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_41692018">
+<meta property="og:description" content="逆向，顾名思义就是将别人打包出来的软件包逆转回去，在这里我们将带领大家操作如何将砸壳的ipa包进行逆向，至于如何取到ipa包和如何砸壳就不在这里说明了，以后会单独写出文档来。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-21T12:57:09.235Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2019/11/21/%E9%87%8D%E7%AD%BE%E5%90%8D/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>小树林急急而奔的Blog</title>
+  <title>iOS的ipa包重签名 | 小树林急急而奔的Blog</title>
   
 
 
@@ -179,10 +181,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/%E9%87%8D%E7%AD%BE%E5%90%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -196,8 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/21/%E9%87%8D%E7%AD%BE%E5%90%8D/" class="post-title-link" itemprop="url">iOS的ipa包重签名</a>
+          iOS的ipa包重签名
         </h1>
 
         <div class="post-meta">
@@ -233,110 +234,68 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>逆向，顾名思义就是将别人打包出来的软件包逆转回去，在这里我们将带领大家操作如何将砸壳的ipa包进行逆向，至于如何取到ipa包和如何砸壳就不在这里说明了，以后会单独写出文档来。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/21/%E9%87%8D%E7%AD%BE%E5%90%8D/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <p>逆向，顾名思义就是将别人打包出来的软件包逆转回去，在这里我们将带领大家操作如何将砸壳的ipa包进行逆向，至于如何取到ipa包和如何砸壳就不在这里说明了，以后会单独写出文档来。</p>
+<a id="more"></a>
+
+<h1 id="重签名"><a href="#重签名" class="headerlink" title="重签名"></a>重签名</h1><p>查看软件签名信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Payload duoyi$ codesign -d QiYiPadVideo.app</span><br><span class="line">Payload duoyi$ codesign -d -vv QiYiPadVideo.app/QiYiPadVideo</span><br></pre></td></tr></table></figure>
+<p>签名信息:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Authority=Apple iPhone OS Application Signing</span><br><span class="line">Authority=Apple iPhone Certification Authority</span><br><span class="line">Authority=Apple Root CA</span><br></pre></td></tr></table></figure>
+<p>查看电脑里的可用签名信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">security find-identity -v -p codesigning</span><br></pre></td></tr></table></figure>
+<h2 id="查看应用是否加密"><a href="#查看应用是否加密" class="headerlink" title="查看应用是否加密"></a>查看应用是否加密</h2><ul>
+<li>cd QiYiPadVideo.app/</li>
+<li>QiYiPadVideo.app duoyi$ ls -l QiYiPadVideo</li>
+<li>otool -l QiYiPadVideo &gt; ~/Desktop/123.txt</li>
+<li>搜索字段“cryptid”：0没有加密，1代表某种加密方式</li>
+<li>筛选出cryptid：otool -l QiYiPadVideo | grep cryptid</li>
+</ul>
+<h2 id="重签名操作"><a href="#重签名操作" class="headerlink" title="重签名操作"></a>重签名操作</h2><ul>
+<li>删除PlugIns及watch目录下的PlugIns</li>
+<li>签名framework：codesign -fs “Apple Development: <a href="mailto:615656404@qq.com" target="_blank" rel="noopener">615656404@qq.com</a> (GLT92A3Y9W)” ZipArchive.framework</li>
+<li>（稍微注意：有的可执行文件是没有执行权限的！需要给执行权限）</li>
+<li>修改info.plist文件中的bundle ID</li>
+<li>拷贝描述文件</li>
+<li>查看描述文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jingtengzhoudeMacBook-Pro:Frameworks jasemin$ cd ..</span><br><span class="line">jingtengzhoudeMacBook-Pro:DuoYiIM.app jasemin$ security cms -D -i embedded.mobileprovision</span><br></pre></td></tr></table></figure></li>
+<li>生成权限文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;Entitlements&lt;/key&gt;</span><br><span class="line">	&lt;dict&gt;</span><br><span class="line">				</span><br><span class="line">				&lt;key&gt;application-identifier&lt;/key&gt;</span><br><span class="line">		&lt;string&gt;WZQ2ZJ2QA8.jasemin.Machismo&lt;/string&gt;</span><br><span class="line">				</span><br><span class="line">				&lt;key&gt;keychain-access-groups&lt;/key&gt;</span><br><span class="line">		&lt;array&gt;</span><br><span class="line">				&lt;string&gt;WZQ2ZJ2QA8.*&lt;/string&gt;</span><br><span class="line">		&lt;/array&gt;</span><br><span class="line">				</span><br><span class="line">				&lt;key&gt;get-task-allow&lt;/key&gt;</span><br><span class="line">		&lt;true/&gt;</span><br><span class="line">				</span><br><span class="line">				&lt;key&gt;com.apple.developer.team-identifier&lt;/key&gt;</span><br><span class="line">		&lt;string&gt;WZQ2ZJ2QA8&lt;/string&gt;</span><br><span class="line"></span><br><span class="line">	&lt;/dict&gt;</span><br></pre></td></tr></table></figure></li>
+<li>进行重签名：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jingtengzhoudeMacBook-Pro:Payload jasemin$ codesign -fs &quot;iPhone Developer: 615656404@qq.com (GLT92A3Y9W)&quot; --no-strict --entitlements=/Users/jasemin/Desktop/火星_3.4.5.01/Payload/\ entitlements.plist DuoYiIM.app/</span><br></pre></td></tr></table></figure></li>
+<li>打包生成ipa文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jingtengzhoudeMacBook-Pro:Payload jasemin$ cd ..</span><br><span class="line">jingtengzhoudeMacBook-Pro:火星_3.4.5.01 jasemin$ ls</span><br><span class="line">Container		Payload			iTunesArtwork		iTunesMetadata.plist</span><br><span class="line">jingtengzhoudeMacBook-Pro:火星_3.4.5.01 jasemin$ zip -ry DuoYiIM.ipa Payload/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/31/hello-world/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/IMG_0388.JPG">
-      <meta itemprop="name" content="Jasemin">
-      <meta itemprop="description" content="物有本末 事有始终 知所先后 则近道矣 jtz6156564044@outlook.com https://github.com/Jasemin https://blog.csdn.net/weixin_41692018">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小树林急急而奔的Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/31/hello-world/" class="post-title-link" itemprop="url">iOS的crash日志符号化操作</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-10-31 00:06:20 / 修改时间：12:43:04" itemprop="dateCreated datePublished" datetime="2019-10-31T00:06:20+08:00">2019-10-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crash%E5%88%86%E6%9E%90/" itemprop="url" rel="index">
-                    <span itemprop="name">Crash分析</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在我们日常开发中，总有数不清的bug产出，有些bug能够清楚的通过崩溃日志的调用栈清楚的定位到bug出现的位置，从而方便的进行修复，然而往往很多bug的崩溃日志会出现很多我们所不能理解的符号，这时候我们就需要对crash日志进行符号化。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/31/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/31/hello-world/" rel="next" title="iOS的crash日志符号化操作">
+                  <i class="fa fa-chevron-left"></i> iOS的crash日志符号化操作
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -365,6 +324,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#重签名"><span class="nav-number">1.</span> <span class="nav-text">重签名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看应用是否加密"><span class="nav-number">1.1.</span> <span class="nav-text">查看应用是否加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重签名操作"><span class="nav-number">1.2.</span> <span class="nav-text">重签名操作</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
